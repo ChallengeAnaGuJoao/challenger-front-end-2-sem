@@ -1,12 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { Header } from "./components/header";
+import { Footer } from "./components/footer";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Header />}>
-          <Route index element={<Header />}/>
+        <Route path="/" element={<Footer/>}>
+          <Route index element={<Footer />}/>
         </Route>
       </Routes>
     </BrowserRouter>
