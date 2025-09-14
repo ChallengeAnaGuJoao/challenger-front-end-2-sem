@@ -1,9 +1,9 @@
 export function Footer() {
   return (
     <footer className="bg-purple-900 pt-8 pb-4 px-2">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-stretch gap-8 md:gap-0 border-b border-yellow-100/30 pb-6">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-0 border-b border-yellow-100/30 pb-6">
 
-        <div className="flex-1 flex flex-col items-center md:items-center px-4">
+        <div className="flex-1 flex flex-col items-center md:items-center px-4 ">
           <h3 className="text-yellow-100 text-lg md:text-xl font-bold mb-4 border-b border-yellow-100/30 w-full text-center pb-2">Unidades</h3>
           <p className="text-yellow-100 text-center text-base mb-2">
             Av. Paulista, 1106 - 7º andar<br />
