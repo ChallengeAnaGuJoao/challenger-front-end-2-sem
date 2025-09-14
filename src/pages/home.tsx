@@ -1,4 +1,5 @@
 import hospitalImg from '../assets/hospital-family-visit-animate.svg';
+import { Footer } from '../components/footer';
 import { Header } from '../components/header';
 
 export function Home() {
@@ -23,6 +24,7 @@ export function Home() {
                     </div>
                 </section>
             </main>
+            <Footer/>
         </>
     )
 }
