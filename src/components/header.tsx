@@ -6,11 +6,11 @@ export function Header() {
     const [open, setOpen] = useState(false);
 
     return (
-        <nav className="bg-purple-950 shadow">
-            <div className="max-w-9/10 mx-auto flex items-center justify-between px-4 py-0 max-w-[1200px] mx-auto">
-                <img src={atende_mais} alt="Logo do projeto" className="max-w-[170px] h-auto" />
+        <nav className="bg-purple-950 shadow w-full">
+            <div className=" w-full mx-auto flex item-center justify-between px-2 sm:px-4 md:px-6 lg:px-8 min-h-[80px]">
+                <img src={atende_mais} alt="Logo do projeto" className="max-w-[150px] h-auto" />
 
-                <div className="hidden md:flex gap-6">
+                <div className="hidden md:flex gap-6 justify-end items-center">
                     <Link to="/" className="text-yellow-100 hover:underline font-bold text-lg">Home</Link>
                     <Link to="/teste" className="text-yellow-100 hover:underline font-bold text-lg">Teste</Link>
                     <Link to="/integrantes" className="text-yellow-100 hover:underline font-bold text-lg">Integrantes</Link>
