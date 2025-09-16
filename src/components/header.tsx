@@ -8,9 +8,9 @@ export function Header() {
     return (
         <nav className="bg-purple-950 shadow w-full">
             <div className=" w-full mx-auto flex item-center justify-between px-2 sm:px-4 md:px-6 lg:px-8 min-h-[80px]">
-                <img src={atende_mais} alt="Logo do projeto" className="max-w-[150px] h-auto" />
+                <img src={atende_mais} alt="Logo do projeto" className="max-w-[130px] h-auto" />
 
-                <div className="hidden md:flex gap-6 justify-end items-center">
+                <div className="hidden md:flex gap-5 justify-end items-center">
                     <Link to="/" className="text-yellow-100 hover:underline font-bold text-lg">Home</Link>
                     <Link to="/teste" className="text-yellow-100 hover:underline font-bold text-lg">Teste</Link>
                     <Link to="/integrantes" className="text-yellow-100 hover:underline font-bold text-lg">Integrantes</Link>
