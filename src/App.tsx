@@ -3,6 +3,7 @@ import { Home } from "./pages/home";
 import { Integrantes } from "./pages/integrantes";
 import { SignUp } from "./pages/SignUp";
 import { Login } from "./pages/login";
+import { Contato } from "./pages/contato";
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
           <Route path="/integrantes" element={<Integrantes />} />
           <Route path="/cadastrar" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/contato" element={<Contato />} />
       </Routes>
     </BrowserRouter>
   );
