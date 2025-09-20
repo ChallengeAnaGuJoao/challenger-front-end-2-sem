@@ -317,166 +317,341 @@ function drawLevel() {
     return <span className="text-red-600 text-xl">❌</span>;
   };
 
-  return (
-    <>
-      <Header />
-      <div className="min-h-screen flex flex-col items-center justify-start bg-bg-clarinho p-8">
-        <div className="w-full max-w-4xl">
-          <h1 className="text-2xl font-bold text-roxo-escuro mb-4">Teste de conectividade e periféricos</h1>
-          <p className="text-sm text-texto-escuro mb-6">Fluxo guiado: execute cada teste em sequência. Permita acesso à câmera/microfone quando perguntado.</p>
+ return (
+  <>
+    <Header />
+    <div className="min-h-screen flex flex-col items-center justify-start bg-bg-clarinho p-8">
+      <div className="w-full max-w-4xl">
+        <h1 className="text-2xl font-bold text-roxo-escuro mb-4">
+          Teste de conectividade e periféricos
+        </h1>
+        <p className="text-sm text-texto-escuro mb-6">
+          Fluxo guiado: execute cada teste em sequência. Permita acesso à
+          câmera/microfone quando perguntado.
+        </p>
 
-          <div className="bg-white rounded-xl shadow p-6">
-            <div className="flex items-center gap-4 mb-4">
-              <button className={`px-3 py-1 rounded ${step === "connectivity" ? "bg-verde-escuro text-white" : "bg-quase-branco"}`} onClick={() => setStep("connectivity")}>1. Conectividade</button>
-              <button className={`px-3 py-1 rounded ${step === "camera" ? "bg-verde-escuro text-white" : "bg-quase-branco"}`} onClick={() => setStep("camera")}>2. Câmera</button>
-              <button className={`px-3 py-1 rounded ${step === "mic" ? "bg-verde-escuro text-white" : "bg-quase-branco"}`} onClick={() => setStep("mic")}>3. Microfone</button>
-              <div className="ml-auto text-sm text-gray-500">Status: {busy ? "Executando..." : "Pronto"}</div>
+        <div className="bg-white rounded-xl shadow p-6">
+          {/* NAV DE STEPS */}
+          <div className="flex flex-wrap items-center gap-2 md:gap-4 mb-4">
+            <button
+              className={`px-3 py-1 rounded w-full sm:w-auto ${
+                step === "connectivity"
+                  ? "bg-verde-escuro text-white"
+                  : "bg-quase-branco"
+              }`}
+              onClick={() => setStep("connectivity")}
+            >
+              1. Conectividade
+            </button>
+            <button
+              className={`px-3 py-1 rounded w-full sm:w-auto ${
+                step === "camera"
+                  ? "bg-verde-escuro text-white"
+                  : "bg-quase-branco"
+              }`}
+              onClick={() => setStep("camera")}
+            >
+              2. Câmera
+            </button>
+            <button
+              className={`px-3 py-1 rounded w-full sm:w-auto ${
+                step === "mic"
+                  ? "bg-verde-escuro text-white"
+                  : "bg-quase-branco"
+              }`}
+              onClick={() => setStep("mic")}
+            >
+              3. Microfone
+            </button>
+            <div className="w-full sm:ml-auto text-sm text-gray-500 mt-2 sm:mt-0">
+              Status: {busy ? "Executando..." : "Pronto"}
             </div>
-
-            {/* --- CONNECTIVITY --- */}
-            {step === "connectivity" && (
-              <div>
-                <h2 className="font-semibold mb-2">Teste de conectividade</h2>
-                <p className="text-sm mb-4">Verificamos latência e velocidade de download (apenas para demonstração).</p>
-                <div className="flex gap-3">
-                  <button disabled={busy} onClick={runConnectivityTest} className="bg-verde-escuro text-white px-4 py-2 rounded">Iniciar teste</button>
-                  <button onClick={() => { setResults(prev => ({ ...prev, connectivity: undefined })); } } className="px-3 py-2 rounded border">Resetar</button>
-                </div>
-                {results.connectivity && (
-                  <div className="mt-4 bg-bg-escurinho p-3 rounded flex items-center gap-2">
-                    {renderStatus(results.connectivity.status)}
-                    <div>
-                      <p>Ping: {results.connectivity.pingMs ?? "—"} ms</p>
-                      <p>Download: {results.connectivity.downloadKbps ?? "—"} kbps ({results.connectivity.downloadBytes ?? "—"} bytes)</p>
-                      <p className="text-sm text-gray-600">{results.connectivity.details}</p>
-                    </div>
-                  </div>
-                )}
-                <div className="mt-4 flex justify-end">
-                  <button onClick={() => setStep("camera")} className="px-4 py-2 rounded bg-quase-branco border">Próximo: Câmera</button>
-                </div>
-              </div>
-            )}
-
-            {/* --- CAMERA --- */}
-            {step === "camera" && (
-              <div>
-                <h2 className="font-semibold mb-2">Teste de câmera</h2>
-                <p className="text-sm mb-4">Permita acesso à câmera para ver o preview. Tire um snapshot para o relatório.</p>
-
-                <div className="md:flex md:gap-4">
-                  <div className="md:w-1/2">
-                    <div className="bg-black rounded mb-2 relative">
-                      <video ref={videoRef} className="w-full h-64 object-contain rounded" autoPlay playsInline />
-                      {results.camera && (
-                        <div className="absolute top-2 right-2">{renderStatus(results.camera.status)}</div>
-                      )}
-                    </div>
-                    <div className="flex gap-2">
-                      <button disabled={busy} onClick={startCamera} className="px-3 py-2 rounded bg-verde-escuro text-white">Ativar câmera</button>
-                      <button onClick={takeSnapshot} className="px-3 py-2 rounded border">Tirar foto</button>
-                      <button onClick={stopCamera} className="px-3 py-2 rounded border">Parar</button>
-                    </div>
-                  </div>
-
-                  <div className="md:w-1/2">
-                    <canvas ref={canvasRef} className="w-full h-64 bg-gray-100 rounded mb-2" />
-                    <div className="text-sm text-gray-700">
-                      <p>Resolução: {results.camera?.resolution?.width ?? "—"} x {results.camera?.resolution?.height ?? "—"}</p>
-                      <p>Dispositivo: {results.camera?.deviceLabel ?? "—"}</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-4 flex justify-between">
-                  <button onClick={() => setStep("connectivity")} className="px-4 py-2 rounded border">Voltar</button>
-                  <button onClick={() => setStep("mic")} className="px-4 py-2 rounded bg-quase-branco border">Próximo: Microfone</button>
-                </div>
-              </div>
-            )}
-
-            {/* --- MICROPHONE --- */}
-            {step === "mic" && (
-              <div>
-                <h2 className="font-semibold mb-2">Teste de microfone</h2>
-                <p className="text-sm mb-4">Permita acesso ao microfone e fale. Vamos medir nível RMS e gravar ~3s para demonstrar captura.</p>
-
-                {micError && <div className="mb-3 text-sm text-red-600">{micError}</div>}
-
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Microfone</label>
-                  <div className="flex gap-2">
-                    <select
-                      className="flex-1 border rounded p-2"
-                      value={selectedMic}
-                      onChange={e => setSelectedMic(e.target.value)}
-                    >
-                      <option value="default">Padrão do sistema</option>
-                      {micDevices.map(d => (
-                        <option key={d.deviceId} value={d.deviceId}>{d.label}</option>
-                      ))}
-                    </select>
-                    <button onClick={requestPermissionAndList} className="px-3 py-2 rounded border text-sm">Listar / Permitir</button>
-                    <button onClick={enumerateMics} className="px-3 py-2 rounded border text-sm" title="Atualiza lista (não pede permissão)">Atualizar</button>
-                  </div>
-                  <p className="mt-2 text-xs text-gray-500">Dica: clique em “Listar / Permitir” para que o navegador solicite permissão e mostre os nomes dos dispositivos.</p>
-                </div>
-
-                <div className="flex gap-3 items-center mb-3">
-                  {!listening ? (
-                    <button disabled={busy} onClick={startListening} className="px-3 py-2 rounded bg-verde-escuro text-white">Iniciar (usar selecionado)</button>
-                  ) : (
-                    <button onClick={stopListening} className="px-3 py-2 rounded border">Parar</button>
-                  )}
-                </div>
-
-                <div className="bg-bg-escurinho p-3 rounded">
-                  <p>Microfone disponível: {results.mic?.supported ? "Sim" : "—"} {renderStatus(results.mic?.status)}</p>
-                  <p>Nível RMS (aprox): {level.toFixed(3)}</p>
-                  <p>Última gravação (bytes): {results.mic?.recordedBlobSize ?? "—"}</p>
-                  <p>Dispositivo: {results.mic?.deviceLabel ?? "—"}</p>
-
-                  <div className="mt-4">
-                    <div className="w-full h-4 bg-gray-200 rounded overflow-hidden">
-                      <div
-                        style={{
-                          width: `${pct}%`,
-                          height: "100%",
-                          transition: "width 120ms linear",
-                          background: pct > 66 ? "#16a34a" : pct > 33 ? "#f59e0b" : "#ef4444",
-                        }}
-                      />
-                    </div>
-                    <p className="text-xs text-gray-500 mt-1">Nível de áudio detectado</p>
-                  </div>
-                </div>
-
-                <div className="mt-4 flex justify-between">
-                  <button onClick={() => setStep("camera")} className="px-4 py-2 rounded border">Voltar</button>
-                  <button onClick={() => setStep("done")} className="px-4 py-2 rounded bg-quase-branco border">Ver resultados</button>
-                </div>
-              </div>
-            )}
-
-            {/* --- DONE --- */}
-            {step === "done" && (
-              <div>
-                <h2 className="font-semibold mb-2">Resumo / Resultados</h2>
-                <div className="bg-white p-4 rounded shadow">
-                  <pre className="text-sm max-h-64 overflow-auto">{JSON.stringify(results, null, 2)}</pre>
-
-                  <div className="mt-4 flex gap-3">
-                    <button onClick={downloadResults} className="px-3 py-2 rounded bg-verde-escuro text-white">Baixar relatório (JSON)</button>
-                    <button onClick={() => { setStep("connectivity"); setResults({ timestamp: new Date().toISOString() }); } } className="px-3 py-2 rounded border">Reiniciar testes</button>
-                  </div>
-                </div>
-              </div>
-            )}
-
           </div>
+
+          {/* --- CONNECTIVITY --- */}
+          {step === "connectivity" && (
+            <div>
+              <h2 className="font-semibold mb-2">Teste de conectividade</h2>
+              <p className="text-sm mb-4">
+                Verificamos latência e velocidade de download (apenas para
+                demonstração).
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <button
+                  disabled={busy}
+                  onClick={runConnectivityTest}
+                  className="bg-verde-escuro text-white px-4 py-2 rounded w-full sm:w-auto"
+                >
+                  Iniciar teste
+                </button>
+                <button
+                  onClick={() => {
+                    setResults((prev) => ({ ...prev, connectivity: undefined }));
+                  }}
+                  className="px-3 py-2 rounded border w-full sm:w-auto"
+                >
+                  Resetar
+                </button>
+              </div>
+              {results.connectivity && (
+                <div className="mt-4 bg-bg-escurinho p-3 rounded flex flex-col sm:flex-row items-start sm:items-center gap-2">
+                  {renderStatus(results.connectivity.status)}
+                  <div>
+                    <p>Ping: {results.connectivity.pingMs ?? "—"} ms</p>
+                    <p>
+                      Download: {results.connectivity.downloadKbps ?? "—"} kbps (
+                      {results.connectivity.downloadBytes ?? "—"} bytes)
+                    </p>
+                    <p className="text-sm text-gray-600">
+                      {results.connectivity.details}
+                    </p>
+                  </div>
+                </div>
+              )}
+              <div className="mt-4 flex justify-end">
+                <button
+                  onClick={() => setStep("camera")}
+                  className="px-4 py-2 rounded bg-quase-branco border"
+                >
+                  Próximo: Câmera
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* --- CAMERA --- */}
+          {step === "camera" && (
+            <div>
+              <h2 className="font-semibold mb-2">Teste de câmera</h2>
+              <p className="text-sm mb-4">
+                Permita acesso à câmera para ver o preview. Tire um snapshot para
+                o relatório.
+              </p>
+
+              <div className="flex flex-col md:flex-row md:gap-4">
+                <div className="md:w-1/2">
+                  <div className="bg-black rounded mb-2 relative">
+                    <video
+                      ref={videoRef}
+                      className="w-full h-64 object-contain rounded"
+                      autoPlay
+                      playsInline
+                    />
+                    {results.camera && (
+                      <div className="absolute top-2 right-2">
+                        {renderStatus(results.camera.status)}
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      disabled={busy}
+                      onClick={startCamera}
+                      className="px-3 py-2 rounded bg-verde-escuro text-white w-full sm:w-auto"
+                    >
+                      Ativar câmera
+                    </button>
+                    <button
+                      onClick={takeSnapshot}
+                      className="px-3 py-2 rounded border w-full sm:w-auto"
+                    >
+                      Tirar foto
+                    </button>
+                    <button
+                      onClick={stopCamera}
+                      className="px-3 py-2 rounded border w-full sm:w-auto"
+                    >
+                      Parar
+                    </button>
+                  </div>
+                </div>
+
+                <div className="md:w-1/2 mt-4 md:mt-0">
+                  <canvas
+                    ref={canvasRef}
+                    className="w-full h-64 bg-gray-100 rounded mb-2"
+                  />
+                  <div className="text-sm text-gray-700">
+                    <p>
+                      Resolução: {results.camera?.resolution?.width ?? "—"} x{" "}
+                      {results.camera?.resolution?.height ?? "—"}
+                    </p>
+                    <p>Dispositivo: {results.camera?.deviceLabel ?? "—"}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4 flex flex-wrap justify-between gap-2">
+                <button
+                  onClick={() => setStep("connectivity")}
+                  className="px-4 py-2 rounded border w-full sm:w-auto"
+                >
+                  Voltar
+                </button>
+                <button
+                  onClick={() => setStep("mic")}
+                  className="px-4 py-2 rounded bg-quase-branco border w-full sm:w-auto"
+                >
+                  Próximo: Microfone
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* --- MICROPHONE --- */}
+          {step === "mic" && (
+            <div>
+              <h2 className="font-semibold mb-2">Teste de microfone</h2>
+              <p className="text-sm mb-4">
+                Permita acesso ao microfone e fale. Vamos medir nível RMS e
+                gravar ~3s para demonstrar captura.
+              </p>
+
+              {micError && (
+                <div className="mb-3 text-sm text-red-600">{micError}</div>
+              )}
+
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Microfone
+                </label>
+                <div className="flex flex-wrap gap-2">
+                  <select
+                    className="flex-1 border rounded p-2 min-w-[150px]"
+                    value={selectedMic}
+                    onChange={(e) => setSelectedMic(e.target.value)}
+                  >
+                    <option value="default">Padrão do sistema</option>
+                    {micDevices.map((d) => (
+                      <option key={d.deviceId} value={d.deviceId}>
+                        {d.label}
+                      </option>
+                    ))}
+                  </select>
+                  <button
+                    onClick={requestPermissionAndList}
+                    className="px-3 py-2 rounded border text-sm w-full sm:w-auto"
+                  >
+                    Listar / Permitir
+                  </button>
+                  <button
+                    onClick={enumerateMics}
+                    className="px-3 py-2 rounded border text-sm w-full sm:w-auto"
+                    title="Atualiza lista (não pede permissão)"
+                  >
+                    Atualizar
+                  </button>
+                </div>
+                <p className="mt-2 text-xs text-gray-500">
+                  Dica: clique em “Listar / Permitir” para que o navegador
+                  solicite permissão e mostre os nomes dos dispositivos.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-3 items-center mb-3">
+                {!listening ? (
+                  <button
+                    disabled={busy}
+                    onClick={startListening}
+                    className="px-3 py-2 rounded bg-verde-escuro text-white w-full sm:w-auto"
+                  >
+                    Iniciar (usar selecionado)
+                  </button>
+                ) : (
+                  <button
+                    onClick={stopListening}
+                    className="px-3 py-2 rounded border w-full sm:w-auto"
+                  >
+                    Parar
+                  </button>
+                )}
+              </div>
+
+              <div className="bg-bg-escurinho p-3 rounded">
+                <p>
+                  Microfone disponível: {results.mic?.supported ? "Sim" : "—"}{" "}
+                  {renderStatus(results.mic?.status)}
+                </p>
+                <p>Nível RMS (aprox): {level.toFixed(3)}</p>
+                <p>
+                  Última gravação (bytes):{" "}
+                  {results.mic?.recordedBlobSize ?? "—"}
+                </p>
+                <p>Dispositivo: {results.mic?.deviceLabel ?? "—"}</p>
+
+                <div className="mt-4">
+                  <div className="w-full h-4 bg-gray-200 rounded overflow-hidden">
+                    <div
+                      style={{
+                        width: `${pct}%`,
+                        height: "100%",
+                        transition: "width 120ms linear",
+                        background:
+                          pct > 66
+                            ? "#16a34a"
+                            : pct > 33
+                            ? "#f59e0b"
+                            : "#ef4444",
+                      }}
+                    />
+                  </div>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Nível de áudio detectado
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-4 flex flex-wrap justify-between gap-2">
+                <button
+                  onClick={() => setStep("camera")}
+                  className="px-4 py-2 rounded border w-full sm:w-auto"
+                >
+                  Voltar
+                </button>
+                <button
+                  onClick={() => setStep("done")}
+                  className="px-4 py-2 rounded bg-quase-branco border w-full sm:w-auto"
+                >
+                  Ver resultados
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* --- DONE --- */}
+          {step === "done" && (
+            <div>
+              <h2 className="font-semibold mb-2">Resumo / Resultados</h2>
+              <div className="bg-white p-4 rounded shadow">
+                <pre className="text-sm max-h-64 overflow-auto">
+                  {JSON.stringify(results, null, 2)}
+                </pre>
+
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <button
+                    onClick={downloadResults}
+                    className="px-3 py-2 rounded bg-verde-escuro text-white w-full sm:w-auto"
+                  >
+                    Baixar relatório (JSON)
+                  </button>
+                  <button
+                    onClick={() => {
+                      setStep("connectivity");
+                      setResults({ timestamp: new Date().toISOString() });
+                    }}
+                    className="px-3 py-2 rounded border w-full sm:w-auto"
+                  >
+                    Reiniciar testes
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
-      <Footer />
-    </>
-  );
+    </div>
+    <Footer />
+  </>
+);
+
 }
