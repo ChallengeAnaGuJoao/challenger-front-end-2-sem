@@ -4,6 +4,9 @@ import { Integrantes } from "./pages/integrantes";
 import { SignUp } from "./pages/SignUp";
 import { Login } from "./pages/login";
 import { Contato } from "./pages/contato";
+import { Teste } from "./pages/teste";
+import MicTest from "./pages/micTest";
+
 
 
 function App() {
@@ -15,6 +18,8 @@ function App() {
           <Route path="/cadastrar" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/contato" element={<Contato />} />
+          <Route path="/teste" element={<Teste />} />
+          <Route path="/micTest" element={<MicTest />} />
       </Routes>
     </BrowserRouter>
   );
