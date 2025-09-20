@@ -31,9 +31,9 @@ export function Footer() {
 
         <div className="flex-1 flex flex-col items-center px-4">
           <h3 className="text-quase-branco text-lg md:text-xl font-bold mb-4 border-b border-azul-principal/30 w-full text-center pb-2">Links úteis</h3>
-          <p className="text-quase-branco text-center text-base mb-2"><a href="#" className="hover:text-azul-principal">Política de Privacidade</a></p>
-          <p className="text-quase-branco text-center text-base mb-2"><a href="#" className="hover:text-azul-principal">Termos de Uso</a></p>
-          <p className="text-quase-branco text-center text-base"><a href="#" className="hover:text-azul-principal">Fale Conosco</a></p>
+          <p className="text-quase-branco text-center text-base mb-2"><a href="#" className="hover:text-amarelo-claro">Política de Privacidade</a></p>
+          <p className="text-quase-branco text-center text-base mb-2"><a href="#" className="hover:text-amarelo-claro">Termos de Uso</a></p>
+          <p className="text-quase-branco text-center text-base"><a href="#" className="hover:text-amarelo-claro">Fale Conosco</a></p>
         </div>
       </div>
 

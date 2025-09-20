@@ -1,51 +1,90 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import atende_mais from '../assets/atende+.png';
+import { Link, useLocation } from "react-router-dom";
+import atende_mais from "../assets/atende+.png";
 
 export function Header() {
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const location = useLocation();
 
-    return (
-       <nav className="bg-roxo-escuro shadow w-full">
-  <div className="w-full mx-auto flex items-center justify-between px-2 sm:px-4 md:px-6 lg:px-8 min-h-[80px]">
-    <img src={atende_mais} alt="Logo do projeto" className="max-w-[130px] h-auto" />
+  const links = [
+    { to: "/", label: "Home" },
+    { to: "/teste", label: "Teste" },
+    { to: "/integrantes", label: "Integrantes" },
+    { to: "/faq", label: "FAQ" },
+    { to: "/contato", label: "Contato" },
+    { to: "/login", label: "Login" },
+    { to: "/cadastrar", label: "Cadastrar" },
+  ];
 
-    {/* Menu desktop */}
-    <div className="hidden md:flex gap-5 justify-end items-center">
-      <Link to="/" className="text-quase-branco hover:text-azul-principal font-bold text-lg">Home</Link>
-      <Link to="/teste" className="text-quase-branco hover:text-azul-principal font-bold text-lg">Teste</Link>
-      <Link to="/integrantes" className="text-quase-branco hover:text-azul-principal font-bold text-lg">Integrantes</Link>
-      <Link to="/faq" className="text-quase-branco hover:text-azul-principal font-bold text-lg">FAQ</Link>
-      <Link to="/contato" className="text-quase-branco hover:text-azul-principal font-bold text-lg">Contato</Link>
-      <Link to="/login" className="text-quase-branco hover:text-azul-principal font-bold text-lg">Login</Link>
-      <Link to="/cadastrar" className="text-quase-branco hover:text-azul-principal font-bold text-lg">Cadastrar</Link>
-    </div>
+  return (
+    <nav className="bg-roxo-escuro shadow w-full h-[80px] flex items-center px-5 md:px-8">
+      {/* Logo */}
+      <Link to="/" className="flex items-center gap-2 text-amarelo-claro hover:opacity-80">
+        <img src={atende_mais} alt="Logo do projeto" className="max-w-[140px] h-auto" />
+      </Link>
 
-    {/* Botão mobile */}
-    <button
-      className="md:hidden text-quase-branco focus:outline-none"
-      onClick={() => setOpen(!open)}
-      aria-label="Abrir menu"
-    >
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d={open ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
-      </svg>
-    </button>
-  </div>
+      {/* Menu desktop */}
+      <div className="hidden md:flex gap-6 ml-auto">
+        {links.map((link) => {
+          const isActive = location.pathname === link.to;
+          return (
+            <Link
+              key={link.to}
+              to={link.to}
+              className={`font-medium text-base text-amarelo-claro hover:opacity-80 ${
+                isActive ? "border-b border-rosa-claro text-rosa-claro" : ""
+              }`}
+            >
+              {link.label}
+            </Link>
+          );
+        })}
+      </div>
 
-  {/* Menu mobile */}
-  {open && (
-    <div className="md:hidden flex flex-col items-center justify-center gap-4 px-4 pb-4 bg-roxo-escuro">
-      <Link to="/" className="text-quase-branco hover:text-azul-principal font-bold text-lg">Home</Link>
-      <Link to="/teste" className="text-quase-branco hover:text-azul-principal font-bold text-lg">Teste</Link>
-      <Link to="/integrantes" className="text-quase-branco hover:text-azul-principal font-bold text-lg">Integrantes</Link>
-      <Link to="/faq" className="text-quase-branco hover:text-azul-principal font-bold text-lg">FAQ</Link>
-      <Link to="/contato" className="text-quase-branco hover:text-azul-principal font-bold text-lg">Contato</Link>
-      <Link to="/login" className="text-quase-branco hover:text-azul-principal font-bold text-lg">Login</Link>
-      <Link to="/cadastrar" className="text-quase-branco hover:text-azul-principal font-bold text-lg">Cadastrar</Link>
-    </div>
-  )}
-</nav>
+      {/* Botão mobile */}
+      <button
+        className="md:hidden text-amarelo-claro ml-auto"
+        onClick={() => setOpen(!open)}
+        aria-label="Abrir menu"
+      >
+        <svg
+          className="w-8 h-8"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d={
+              open
+                ? "M6 18L18 6M6 6l12 12"
+                : "M4 6h16M4 12h16M4 18h16"
+            }
+          />
+        </svg>
+      </button>
 
-    );
+      {/* Menu mobile */}
+      {open && (
+        <div className="absolute top-[80px] left-0 w-full bg-roxo-escuro flex flex-col items-center gap-4 py-4 md:hidden">
+          {links.map((link) => {
+            const isActive = location.pathname === link.to;
+            return (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={`font-medium text-lg text-amarelo-claro hover:opacity-80 ${
+                  isActive ? "border-b border-rosa-claro text-rosa-claro" : ""
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+        </div>
+      )}
+    </nav>
+  );
 }
