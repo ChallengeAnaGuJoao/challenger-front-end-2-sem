@@ -87,19 +87,55 @@ export function Faq() {
   return (
     <>
       <Header />
-      <main>
-        <section className="p-[2rem] w-[70%] m-[0_auto] bg-neutral-50 rounded-[10px] shadow-[-4px_10px_34px_-1px_rgba(112,_112,_112,_0.25)]">
-          <h2 className="text-center mb-[2rem] text-[2rem] font-semibold text-purple-900">Perguntas Frequentes</h2>
-          <div className="mb-[1.5rem]">
+      <main className="my-8 sm:my-12 md:my-16 flex flex-col items-center min-h-[60vh]">
+        <section className="px-4 py-6
+            sm:px-6 sm:py-8
+            md:px-8 md:py-10
+            lg:px-12 lg:py-12
+            xl:px-16 xl:py-14
+            w-full
+            max-w-[98vw]
+            sm:max-w-[90vw]
+            md:max-w-[80vw]
+            lg:max-w-[60vw]
+            xl:max-w-[50vw]
+            mx-auto
+            bg-neutral-50
+            rounded-[10px]
+            shadow-[-4px_10px_34px_-1px_rgba(112,_112,_112,_0.25)]
+            transition-all">
+          <h2 className="text-center mb-8 text-2xl sm:text-3xl md:text-4xl font-semibold text-purple-900">Perguntas Frequentes</h2>
+          <div className="mb-6">
             {faqs.map((faq, idx) => (
-              <div className="mb-[1.5rem]" key={idx}>
-                <button className="flex items-center gap-[0.8rem] w-full text-left text-[1.2rem] font-semibold text-blue-700 cursor-pointer p-[0] transition-colors duration-300 ease-in-out hover:text-blue-500"
-                  onClick={() => setOpenIndex(openIndex === idx ? null : idx)}>
-                  <FaPlus className="text-[1.1rem] transition-transform-0.3"/>
+              <div className="mb-6" key={idx}>
+                <button className="flex items-center gap-2 w-full text-left
+                    text-base sm:text-lg md:text-xl
+                    font-semibold text-blue-700 cursor-pointer p-0
+                    transition-colors duration-300 ease-in-out hover:text-blue-500"
+                  onClick={() => setOpenIndex(openIndex === idx ? null : idx)} aria-expanded={openIndex === idx}
+                  aria-controls={`faq-answer-${idx}`}>
+                  <FaPlus 
+                    size={16}
+                    className={`
+                      flex-shrink-0
+                      text-lg
+                      transition-transform duration-300
+                      ${openIndex === idx ? "rotate-45 text-blue-600" : ""}
+                    `}
+                  />
                   {faq.question}
                 </button>
-                  {openIndex === idx && (
-                  <p className="ml-[2rem] text-base leading-[1.5] mt-[0.5rem] bg-yellow-50 p-[0.8rem_1rem] rounded-sm">
+                {openIndex === idx && (
+                  <p 
+                    id={`faq-answer-${idx}`}
+                    className="
+                      ml-4 sm:ml-6 md:ml-8
+                      text-sm sm:text-base
+                      leading-relaxed mt-2
+                      bg-yellow-50 p-3 sm:p-4 rounded-sm
+                      transition-all
+                    "
+                  >
                     {faq.answer}
                   </p>
                 )}
