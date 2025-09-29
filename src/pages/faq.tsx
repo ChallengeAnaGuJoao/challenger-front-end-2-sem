@@ -6,46 +6,75 @@ import { Link } from "react-router-dom";
 
 const faqs = [
   { 
-    question: "Para que servem os testes?", 
+    question: "O que é o sistema Atende+ ?", 
     answer: (
       <>
-        Os testes ao serem realizados vão auxiliar o paciente a ter um melhor atendimento. Se ainda não fez seus testes, faça&nbsp;
-        <a href="http://localhost:5173/teste" target="_blank" rel="noopener noreferrer" style={{ color: "#38bdf8" }}>
-          aqui
-        </a>
-        <Link to="/teste">aqui</Link>
+        O Atende+ é uma plataforma digital desenvolvida para auxiliar pacientes do IMREA-HCFMUSP a se prepararem para teleatendimentos, permitindo testes de internet, câmera e microfone, além de oferecer suporte automatizado via chatbot. Faça seus 
+        <Link className="text-blue-700" to="/teste"> testes. </Link>
       </>
     ),
   },
 
-  { question: "O que é preciso para participar de uma teleconsulta?", 
-    answer: (
-      <ul className="list-disc pl-5">
-        <li className="p-1.5">Ter uma consulta agendada</li>
-        <li className="p-1.5">Acesso à internet</li>
-        <li className="p-1.5">Download do aplicativo Portal do Paciente HC</li>
-        <li className="p-1.5">Cadastro no Portal do Paciente HC</li>
-        <li className="p-1.5">Ter aceito o Termo de Consentimento pelo Portal do Paciente HC</li>
-        <li className="p-1.5">Acesso a um smartphone com câmera frontal (preferencialmente) ou computador/ notebook com webcam</li>
-        <li className="p-1.5">Navegador Google Chrome</li>
-      </ul>
-    ),
-  },
-
-  { question: "O que é preciso para uma boa teleconsulta?", 
-    answer: (
-      <ul className="list-disc pl-5">
-        <li className="p-1.5">A câmera do seu celular ou computador deverá ser habilitada para que o profissional possa te ver.</li>
-        <li className="p-1.5">Você pode solicitar ajuda a algum parente ou amigo caso tenha alguma dificuldade com tecnologia</li>
-        <li className="p-1.5">O ambiente deve estar iluminado e com pouco barulho para seu médico te ver e ouvir bem</li>
-      </ul>
-    ),
-  },
-
-    { question: "A minha câmera precisa estar ligada?", 
+  { question: "Preciso me cadastrar para usar o Atende+ ?", 
     answer: (
       <>
-        Em alguns tipos de consulta não é obrigatório, mas é importante o seu médico te ver para uma melhor avaliação.
+        Sim, é necessário realizar um cadastro simples para acessar todas as funcionalidades do sistema, garantindo a segurança e o acompanhamento do seu atendimento.
+      </>
+    ),
+  },
+
+  { question: "Como faço para testar minha internet, câmera e microfone ?", 
+    answer: (
+      <>
+        Após fazer login, basta acessar a opção “Faça seus testes agora” no menu principal. O sistema irá guiá-lo para testar cada recurso do seu dispositivo de forma simples e rápida.
+      </>
+    ),
+  },
+
+    { question: "O que acontece se algum teste apresentar problema ?", 
+    answer: (
+      <>
+        Se algum teste identificar um problema técnico, você será automaticamente direcionado para conversar com o chatbot, que irá orientá-lo com soluções passo a passo.
+      </>
+    ),
+  },
+  
+    { question: "O chatbot pode resolver todos os problemas técnicos ?", 
+    answer: (
+      <>
+        O chatbot está preparado para resolver a maioria dos problemas comuns. Caso o problema persista, ele irá orientá-lo a entrar em contato com o suporte humano do IMREA.
+      </>
+    ),
+  },
+
+    { question: "Preciso pagar para usar o Atende+ ?", 
+    answer: (
+      <>
+        Não. O uso do Atende+ é totalmente gratuito para os pacientes do IMREA-HCFMUSP.
+      </>
+    ),
+  },
+
+    { question: "Meus dados estão seguros na plataforma ?", 
+    answer: (
+      <>
+        Sim. O Atende+ segue todas as normas de segurança e privacidade de dados, conforme a LGPD, garantindo a proteção das suas informações.
+      </>
+    ),
+  },
+
+    { question: "Posso acessar o Atende+ de qualquer dispositivo ?", 
+    answer: (
+      <>
+        Sim. O sistema é compatível com computadores, tablets e smartphones, funcionando nos principais navegadores de internet.
+      </>
+    ),
+  },
+
+    { question: "O que devo fazer se esquecer minha senha ?", 
+    answer: (
+      <>
+        Na tela de login, clique em “Esqueci minha senha” e siga as instruções para redefinir seu acesso de forma segura.
       </>
     ),
   },

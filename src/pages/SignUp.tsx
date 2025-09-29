@@ -65,106 +65,107 @@ export function SignUp() {
   return (
     <>
     <Header/>
-      <main className="flex justify-center items-center p-12 bg-bg-clarinho min-h-screen">
-        <div className="flex flex-col md:flex-row justify-between items-center w-full max-w-7xl mx-auto gap-12">
+     <main className="flex justify-center items-center p-12 bg-roxo min-h-screen">
+  <div className="flex flex-col md:flex-row justify-between items-center w-full max-w-7xl mx-auto gap-12">
 
-          {/* Imagem */}
-          <div className="md:w-[45%] flex justify-center">
-            <img
-              src="src/assets/contact-us-animate.svg"
-              alt="Pessoa usando sistema"
-              className="w-full h-auto max-h-[500px] object-contain rounded-xl" />
-          </div>
+    {/* Imagem */}
+    <div className="md:w-[45%] flex justify-center">
+      <img
+        src="src/assets/contact-us-animate.svg"
+        alt="Pessoa usando sistema"
+        className="w-full h-auto max-h-[500px] object-contain rounded-xl" />
+    </div>
 
-          {/* Formulário */}
-          <section className="md:w-[55%] flex flex-col bg-quase-branco rounded-xl p-12 shadow-xl">
-            <h2 className="text-center text-roxo-escuro text-3xl md:text-4xl font-bold mb-8">
-              Cadastro
-            </h2>
+    {/* Formulário */}
+    <section className="md:w-[55%] flex flex-col bg-quase-branco rounded-xl p-12 shadow-xl">
+      <h2 className="text-center text-roxo-escuro text-3xl md:text-4xl font-bold mb-8">
+        Cadastro
+      </h2>
 
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-              {/* Nome */}
-              <label htmlFor="nome" className="font-semibold text-texto-escuro">Nome</label>
-              <input
-                type="text"
-                id="nome"
-                name="nome"
-                placeholder="Seu nome"
-                value={form.nome}
-                onChange={handleChange}
-                className={`p-3 rounded-lg border text-base bg-quase-branco focus:outline-none focus:border-black
-                ${errors.nome ? "border-red-500 bg-red-100" : "border-gray-300"}`} />
-              {errors.nome && <p className="text-red-500 text-sm">{errors.nome}</p>}
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        {/* Nome */}
+        <label htmlFor="nome" className="font-semibold text-roxo-escuro">Nome</label>
+        <input
+          type="text"
+          id="nome"
+          name="nome"
+          placeholder="Seu nome"
+          value={form.nome}
+          onChange={handleChange}
+          className={`p-3 rounded-lg border text-base bg-quase-branco focus:outline-none focus:border-azul-principal
+          ${errors.nome ? "border-red-500 bg-red-100" : "border-gray-300"}`} />
+        {errors.nome && <p className="text-red-500 text-sm">{errors.nome}</p>}
 
-              {/* Telefone 1 */}
-              <label htmlFor="telefone1" className="font-semibold text-texto-escuro">Telefone</label>
-              <input
-                type="text"
-                id="telefone1"
-                name="telefone1"
-                placeholder="(99) 99999-9999"
-                value={form.telefone1}
-                onChange={handleChange}
-                className={`p-3 rounded-lg border text-base bg-quase-branco focus:outline-none focus:border-black
-                ${errors.telefone1 ? "border-red-500 bg-red-100" : "border-gray-300"}`} />
-              {errors.telefone1 && <p className="text-red-500 text-sm">{errors.telefone1}</p>}
+        {/* Telefone 1 */}
+        <label htmlFor="telefone1" className="font-semibold text-roxo-escuro">Telefone</label>
+        <input
+          type="text"
+          id="telefone1"
+          name="telefone1"
+          placeholder="(99) 99999-9999"
+          value={form.telefone1}
+          onChange={handleChange}
+          className={`p-3 rounded-lg border text-base bg-quase-branco focus:outline-none focus:border-azul-principal
+          ${errors.telefone1 ? "border-red-500 bg-red-100" : "border-gray-300"}`} />
+        {errors.telefone1 && <p className="text-red-500 text-sm">{errors.telefone1}</p>}
 
-              {/* Telefone 2 (opcional) */}
-              <label htmlFor="telefone2" className="font-semibold text-texto-escuro">Segundo telefone (opcional)</label>
-              <input
-                type="text"
-                id="telefone2"
-                name="telefone2"
-                placeholder="(99) 99999-9999"
-                value={form.telefone2}
-                onChange={handleChange}
-                className="p-3 rounded-lg border text-base bg-quase-branco focus:outline-none focus:border-black border-gray-300" />
+        {/* Telefone 2 (opcional) */}
+        <label htmlFor="telefone2" className="font-semibold text-roxo-escuro">Segundo telefone (opcional)</label>
+        <input
+          type="text"
+          id="telefone2"
+          name="telefone2"
+          placeholder="(99) 99999-9999"
+          value={form.telefone2}
+          onChange={handleChange}
+          className="p-3 rounded-lg border text-base bg-quase-branco focus:outline-none focus:border-azul-principal border-gray-300" />
 
-              {/* E-mail */}
-              <label htmlFor="email" className="font-semibold text-texto-escuro">E-mail</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="seu@email.com"
-                value={form.email}
-                onChange={handleChange}
-                className={`p-3 rounded-lg border text-base bg-quase-branco focus:outline-none focus:border-black
-                ${errors.email ? "border-red-500 bg-red-100" : "border-gray-300"}`} />
-              {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+        {/* E-mail */}
+        <label htmlFor="email" className="font-semibold text-roxo-escuro">E-mail</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="seu@email.com"
+          value={form.email}
+          onChange={handleChange}
+          className={`p-3 rounded-lg border text-base bg-quase-branco focus:outline-none focus:border-azul-principal
+          ${errors.email ? "border-red-500 bg-red-100" : "border-gray-300"}`} />
+        {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
 
-              {/* Data de nascimento */}
-              <label htmlFor="dataNascimento" className="font-semibold text-texto-escuro">Data de Nascimento</label>
-              <input
-                type="date"
-                id="dataNascimento"
-                name="dataNascimento"
-                value={form.dataNascimento}
-                onChange={handleChange}
-                className={`p-3 rounded-lg border text-base bg-quase-branco focus:outline-none focus:border-black
-                ${errors.dataNascimento ? "border-red-500 bg-red-100" : "border-gray-300"}`} />
-              {errors.dataNascimento && <p className="text-red-500 text-sm">{errors.dataNascimento}</p>}
+        {/* Data de nascimento */}
+        <label htmlFor="dataNascimento" className="font-semibold text-roxo-escuro">Data de Nascimento</label>
+        <input
+          type="date"
+          id="dataNascimento"
+          name="dataNascimento"
+          value={form.dataNascimento}
+          onChange={handleChange}
+          className={`p-3 rounded-lg border text-base bg-quase-branco focus:outline-none focus:border-azul-principal
+          ${errors.dataNascimento ? "border-red-500 bg-red-100" : "border-gray-300"}`} />
+        {errors.dataNascimento && <p className="text-red-500 text-sm">{errors.dataNascimento}</p>}
 
-              {/* Botão */}
-              <button
-                type="submit"
-                className="p-3 mt-4 rounded-lg bg-verde-escuro text-white font-semibold hover:bg-[#00352c] transition-colors"
-              >
-                Cadastrar
-              </button>
-            </form>
+        {/* Botão */}
+        <button
+          type="submit"
+          className="p-3 mt-4 rounded-lg bg-verde-escuro text-quase-branco font-semibold hover:bg-[#00352c] transition-colors"
+        >
+          Cadastrar
+        </button>
+      </form>
 
-            {/* Info de contato */}
-            <div className="mt-8 pt-4 border-t border-gray-300 text-texto-escuro">
-              <h3 className="text-lg font-semibold mb-2 text-roxo-escuro">Outros meios de contato</h3>
-              <p>Email: contato@atendeplus.com.br</p>
-              <p>Telefone: (11) 91234-5678</p>
-              <p>Endereço: Av. das Nações, 1234 - São Paulo, SP</p>
-            </div>
-          </section>
+      {/* Info de contato */}
+      <div className="mt-8 pt-4 border-t border-gray-300 text-roxo-escuro">
+        <h3 className="text-lg font-semibold mb-2 text-roxo-escuro">Outros meios de contato</h3>
+        <p>Email: contato@atendeplus.com.br</p>
+        <p>Telefone: (11) 91234-5678</p>
+        <p>Endereço: Av. das Nações, 1234 - São Paulo, SP</p>
+      </div>
+    </section>
 
-        </div>
-      </main>
+  </div>
+</main>
+
       <Footer />
     </> 
   );
