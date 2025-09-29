@@ -6,6 +6,7 @@ import { Login } from "./pages/login";
 import { Contato } from "./pages/contato";
 import { Teste } from "./pages/teste";
 import MicTest from "./pages/micTest";
+import { Faq } from "./pages/faq";
 
 
 
@@ -16,6 +17,7 @@ function App() {
           <Route index element={<Home />}/>
           <Route path="/integrantes" element={<Integrantes />} />
           <Route path="/cadastrar" element={<SignUp />} />
+          <Route path="/faq" element={<Faq />} />
           <Route path="/login" element={<Login />} />
           <Route path="/contato" element={<Contato />} />
           <Route path="/teste" element={<Teste />} />
