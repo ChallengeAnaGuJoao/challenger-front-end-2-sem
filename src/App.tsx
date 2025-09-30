@@ -7,22 +7,30 @@ import { Contato } from "./pages/contato";
 import { Teste } from "./pages/teste";
 import MicTest from "./pages/micTest";
 import { Faq } from "./pages/faq";
+import { Suspense } from "react";
+import { Loading } from "./components/loading";
+import { NotFound } from "./pages/not-found";
 
 
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-          <Route index element={<Home />}/>
-          <Route path="/integrantes" element={<Integrantes />} />
-          <Route path="/cadastrar" element={<SignUp />} />
-          <Route path="/faq" element={<Faq />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/contato" element={<Contato />} />
-          <Route path="/teste" element={<Teste />}/>
-          <Route path="/micTest" element={<MicTest />} />
-      </Routes>
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          <Route>
+            <Route index element={<Home />} />
+            <Route path="/integrantes" element={<Integrantes />} />
+            <Route path="/cadastrar" element={<SignUp />} />
+            <Route path="/faq" element={<Faq />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/contato" element={<Contato />} />
+            <Route path="/teste" element={<Teste />} />
+            <Route path="/micTest" element={<MicTest />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }
