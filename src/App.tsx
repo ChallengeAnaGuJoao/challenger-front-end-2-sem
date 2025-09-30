@@ -1,16 +1,36 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { Home } from "./pages/home";
-import { Integrantes } from "./pages/integrantes";
-import { SignUp } from "./pages/SignUp";
-import { Login } from "./pages/login";
-import { Contato } from "./pages/contato";
-import { Teste } from "./pages/teste";
-import { Faq } from "./pages/faq";
-import { Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { Loading } from "./components/loading";
 import { NotFound } from "./pages/not-found";
 
 
+const Home = lazy(() =>
+  import("./pages/home").then((m) => ({ default: m.Home }))
+);
+
+const Teste = lazy(() =>
+  import("./pages/teste").then((m) => ({ default: m.Teste }))
+);
+
+const Integrantes = lazy(() =>
+  import("./pages/integrantes").then((m) => ({ default: m.Integrantes }))
+);
+
+const Faq = lazy(() =>
+  import("./pages/faq").then((m) => ({ default: m.Faq }))
+);
+
+const Contato = lazy(() =>
+  import("./pages/contato").then((m) => ({ default: m.Contato }))
+);
+
+const Login = lazy(() =>
+  import("./pages/login").then((m) => ({ default: m.Login }))
+);
+
+const SignUp = lazy(() =>
+  import("./pages/SignUp").then((m) => ({ default: m.SignUp }))
+);
 
 function App() {
   return (
