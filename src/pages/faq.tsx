@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Footer } from "../components/footer";
 import { Header } from "../components/header";
 import { FaPlus } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 const faqs = [
   { 
@@ -14,75 +14,42 @@ const faqs = [
       </>
     ),
   },
-
-  { question: "Preciso me cadastrar para usar o Atende+ ?", 
-    answer: (
-      <>
-        Sim, é necessário realizar um cadastro simples para acessar todas as funcionalidades do sistema, garantindo a segurança e o acompanhamento do seu atendimento.
-      </>
-    ),
-  },
-
-  { question: "Como faço para testar minha internet, câmera e microfone ?", 
-    answer: (
-      <>
-        Após fazer login, basta acessar a opção “Faça seus testes agora” no menu principal. O sistema irá guiá-lo para testar cada recurso do seu dispositivo de forma simples e rápida.
-      </>
-    ),
-  },
-
-    { question: "O que acontece se algum teste apresentar problema ?", 
-    answer: (
-      <>
-        Se algum teste identificar um problema técnico, você será automaticamente direcionado para conversar com o chatbot, que irá orientá-lo com soluções passo a passo.
-      </>
-    ),
-  },
-  
-    { question: "O chatbot pode resolver todos os problemas técnicos ?", 
-    answer: (
-      <>
-        O chatbot está preparado para resolver a maioria dos problemas comuns. Caso o problema persista, ele irá orientá-lo a entrar em contato com o suporte humano do IMREA.
-      </>
-    ),
-  },
-
-    { question: "Preciso pagar para usar o Atende+ ?", 
-    answer: (
-      <>
-        Não. O uso do Atende+ é totalmente gratuito para os pacientes do IMREA-HCFMUSP.
-      </>
-    ),
-  },
-
-    { question: "Meus dados estão seguros na plataforma ?", 
-    answer: (
-      <>
-        Sim. O Atende+ segue todas as normas de segurança e privacidade de dados, conforme a LGPD, garantindo a proteção das suas informações.
-      </>
-    ),
-  },
-
-    { question: "Posso acessar o Atende+ de qualquer dispositivo ?", 
-    answer: (
-      <>
-        Sim. O sistema é compatível com computadores, tablets e smartphones, funcionando nos principais navegadores de internet.
-      </>
-    ),
-  },
-
-    { question: "O que devo fazer se esquecer minha senha ?", 
-    answer: (
-      <>
-        Na tela de login, clique em “Esqueci minha senha” e siga as instruções para redefinir seu acesso de forma segura.
-      </>
-    ),
-  },
-
+  { question: "Preciso me cadastrar para usar o Atende+ ?", answer: <>Sim, é necessário realizar um cadastro simples...</> },
+  { question: "Como faço para testar minha internet, câmera e microfone ?", answer: <>Após fazer login, basta acessar a opção...</> },
+  { question: "O que acontece se algum teste apresentar problema ?", answer: <>Se algum teste identificar um problema técnico...</> },
+  { question: "O chatbot pode resolver todos os problemas técnicos ?", answer: <>O chatbot está preparado para resolver a maioria...</> },
+  { question: "Preciso pagar para usar o Atende+ ?", answer: <>Não. O uso do Atende+ é totalmente gratuito...</> },
+  { question: "Meus dados estão seguros na plataforma ?", answer: <>Sim. O Atende+ segue todas as normas de segurança...</> },
+  { question: "Posso acessar o Atende+ de qualquer dispositivo ?", answer: <>Sim. O sistema é compatível com computadores...</> },
+  { question: "O que devo fazer se esquecer minha senha ?", answer: <>Na tela de login, clique em “Esqueci minha senha”...</> },
 ];
 
 export function Faq() {
+  const { id } = useParams<{ id?: string }>();
+  const navigate = useNavigate();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  // abre direto se acessar /faq/:id
+  useEffect(() => {
+    if (id) {
+      const idx = parseInt(id, 10);
+      if (!isNaN(idx) && idx >= 0 && idx < faqs.length) {
+        setOpenIndex(idx);
+      }
+    } else {
+      setOpenIndex(null);
+    }
+  }, [id]);
+
+  const handleClick = (idx: number) => {
+    if (openIndex === idx) {
+      setOpenIndex(null);
+      navigate("/faq"); // fecha e volta pra /faq
+    } else {
+      setOpenIndex(idx);
+      navigate(`/faq/${idx}`); // abre e atualiza URL
+    }
+  };
 
   return (
     <>
@@ -108,11 +75,13 @@ export function Faq() {
           <div className="mb-6">
             {faqs.map((faq, idx) => (
               <div className="mb-6" key={idx}>
-                <button className="flex items-center gap-2 w-full text-left
+                <button
+                  className="flex items-center gap-2 w-full text-left
                     text-base sm:text-lg md:text-xl
                     font-semibold text-blue-700 cursor-pointer p-0
                     transition-colors duration-300 ease-in-out hover:text-blue-500"
-                  onClick={() => setOpenIndex(openIndex === idx ? null : idx)} aria-expanded={openIndex === idx}
+                  onClick={() => handleClick(idx)}
+                  aria-expanded={openIndex === idx}
                   aria-controls={`faq-answer-${idx}`}>
                   <FaPlus 
                     size={16}
