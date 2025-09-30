@@ -6,8 +6,8 @@ import linkedin from '../assets/linkedin.png'
 import gustavoterada from '../assets/gustavoterada.jpeg'
 import joaoguilherme from '../assets/joaoguilherme.jpeg'
 
-export function Integrantes(){
-    return(
+export function Integrantes() {
+    return (
         <>
             <Header />
             <main className="overflow-x-hidden">

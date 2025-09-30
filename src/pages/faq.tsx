@@ -5,11 +5,11 @@ import { FaPlus } from "react-icons/fa";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
 const faqs = [
-  { 
-    question: "O que é o sistema Atende+ ?", 
+  {
+    question: "O que é o sistema Atende+ ?",
     answer: (
       <>
-        O Atende+ é uma plataforma digital desenvolvida para auxiliar pacientes do IMREA-HCFMUSP a se prepararem para teleatendimentos, permitindo testes de internet, câmera e microfone, além de oferecer suporte automatizado via chatbot. Faça seus 
+        O Atende+ é uma plataforma digital desenvolvida para auxiliar pacientes do IMREA-HCFMUSP a se prepararem para teleatendimentos, permitindo testes de internet, câmera e microfone, além de oferecer suporte automatizado via chatbot. Faça seus
         <Link className="text-blue-700" to="/teste"> testes. </Link>
       </>
     ),
@@ -83,7 +83,7 @@ export function Faq() {
                   onClick={() => handleClick(idx)}
                   aria-expanded={openIndex === idx}
                   aria-controls={`faq-answer-${idx}`}>
-                  <FaPlus 
+                  <FaPlus
                     size={16}
                     className={`
                       flex-shrink-0
@@ -95,7 +95,7 @@ export function Faq() {
                   {faq.question}
                 </button>
                 {openIndex === idx && (
-                  <p 
+                  <p
                     id={`faq-answer-${idx}`}
                     className="
                       ml-4 sm:ml-6 md:ml-8
