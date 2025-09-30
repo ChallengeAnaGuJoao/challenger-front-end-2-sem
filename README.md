@@ -1,69 +1,79 @@
-# React + TypeScript + Vite
+# Projeto Challenge Front-End 2º Semestre
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+## Integrantes
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Ana Flavia Camelo - RM561489](https://github.com/afcamelo)
+- [Gustavo Kenji Terada - RM562745](https://github.com/Gkenji110)
+- [João Guilherme Carvalho Novaes - RM566234](https://github.com/JoaoGuiNovaes)
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tecnologias
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+* **Frontend:** React, TypeScript, Tailwind CSS
+* **Controle de versão:** Git / GitHub
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Imagens e Ícones
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+![logo](src/assets/atende+.png)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Estrutura de pastas
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+<pre>
+CHALLENGER-FRONT-END-2-SEM/
+├── node_modules/
+├── public/
+│   ├── models/
+│   ├── chat-bot-animate.svg
+│   └── vite.svg
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── pages/
+│   ├── App.tsx
+│   ├── index.css
+│   ├── main.tsx
+│   └── vite-env.d.ts
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── README.md
+├── tailwind.config.cjs
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
+</pre>
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Como Rodar
+
+1. Clone o repositório:
+
+   ```bash
+   git clone https://github.com/ChallengeAnaGuJoao/challenger-front-end-2-sem/
+   ```
+2. Acesse a pasta do projeto:
+
+   ```bash
+   cd challenger-front-end-2-sem
+   ```
+3. Instale as dependências:
+
+   ```bash
+   npm install
+   ```
+4. Execute o projeto em modo de desenvolvimento:
+
+   ```bash
+   npm run dev
+   ```
+5. Abra o navegador em `http://localhost:5173` (ou a porta mostrada no terminal).
+
+## Repositório
+
+* **GitHub:** [https://github.com/ChallengeAnaGuJoao/challenger-front-end-2-sem/](https://github.com/ChallengeAnaGuJoao/challenger-front-end-2-sem/)
+
+## Link youtube
+https://youtube.com/
