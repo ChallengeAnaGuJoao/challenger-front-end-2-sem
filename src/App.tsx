@@ -32,6 +32,10 @@ const SignUp = lazy(() =>
   import("./pages/SignUp").then((m) => ({ default: m.SignUp }))
 );
 
+const About = lazy(() =>
+  import("./pages/about").then((m) => ({ default: m.About }))
+);
+
 function App() {
   return (
     <BrowserRouter>
@@ -45,6 +49,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/contato" element={<Contato />} />
             <Route path="/teste" element={<Teste />} />
+            <Route path="/about" element={<About />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
