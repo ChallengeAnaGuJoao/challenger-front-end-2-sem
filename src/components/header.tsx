@@ -8,6 +8,7 @@ export function Header() {
 
   const links = [
     { to: "/", label: "Home" },
+    { to: "/about", label: "Sobre" },
     { to: "/teste", label: "Teste" },
     { to: "/integrantes", label: "Integrantes" },
     { to: "/faq", label: "FAQ" },
