@@ -20,7 +20,7 @@ function App() {
           <Route path="/faq" element={<Faq />} />
           <Route path="/login" element={<Login />} />
           <Route path="/contato" element={<Contato />} />
-          <Route path="/teste" element={<Teste />} />
+          <Route path="/teste" element={<Teste />}/>
           <Route path="/micTest" element={<MicTest />} />
       </Routes>
     </BrowserRouter>
