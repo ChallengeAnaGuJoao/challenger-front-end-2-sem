@@ -21,7 +21,7 @@ export function Header() {
     <nav className="bg-roxo-escuro shadow w-full h-[80px] flex items-center px-5 md:px-8">
       {/* Logo */}
       <Link to="/" className="flex items-center gap-2 text-amarelo-claro hover:opacity-80">
-        <img src={atende_mais} alt="Logo do projeto" className="max-w-[140px] h-auto" />
+        <img src={atende_mais} alt="Logo do projeto" className="max-w-[110px] h-auto" />
       </Link>
 
       {/* Menu desktop */}
