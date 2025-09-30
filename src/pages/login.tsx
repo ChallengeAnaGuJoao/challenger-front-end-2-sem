@@ -2,6 +2,7 @@ import { Footer } from "../components/footer";
 import { Header } from "../components/header";
 import "../index.css";
 import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface LoginData {
   email: string;
@@ -16,6 +17,7 @@ interface LoginErrors {
 export function Login() {
   const [form, setForm] = useState<LoginData>({ email: "", senha: "" });
   const [errors, setErrors] = useState<LoginErrors>({});
+  const navigate = useNavigate(); // hook para navegação programática
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -33,7 +35,7 @@ export function Login() {
 
     if (Object.keys(newErrors).length === 0) {
       console.log("Login realizado:", form);
-      alert("Login realizado com sucesso!");
+      navigate("/teste"); // redireciona para a página /teste
     }
   };
 
